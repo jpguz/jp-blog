@@ -1,0 +1,84 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = 'Blog de JP' } = Astro.props;
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      :root {
+        --text: #1a1a1a;
+        --muted: #6b7280;
+        --border: #e5e7eb;
+        --bg: #ffffff;
+        --max-w: 680px;
+        --font-sans: 'Inter', system-ui, sans-serif;
+        --font-serif: 'Lora', Georgia, serif;
+      }
+
+      html { font-size: 18px; }
+      body {
+        font-family: var(--font-sans);
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.7;
+        padding: 2rem 1.25rem;
+      }
+
+      .site-wrap {
+        max-width: var(--max-w);
+        margin: 0 auto;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding-bottom: 2rem;
+        margin-bottom: 3rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      header a { text-decoration: none; color: var(--text); }
+      .site-name { font-size: 1rem; font-weight: 500; letter-spacing: -0.01em; }
+      nav a { font-size: 0.875rem; color: var(--muted); margin-left: 1.5rem; }
+      nav a:hover { color: var(--text); }
+
+      footer {
+        margin-top: 4rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border);
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="site-wrap">
+      <header>
+        <a href="/" class="site-name">JP Guzmán</a>
+        <nav>
+          <a href="/">Inicio</a>
+        </nav>
+      </header>
+      <main>
+        <slot />
+      </main>
+      <footer>
+        &copy; {new Date().getFullYear()} JP Guzmán
+      </footer>
+    </div>
+  </body>
+</html>
